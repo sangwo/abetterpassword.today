@@ -37,6 +37,15 @@
     $('input[name="min_num_uppercase_letters"]').val(DEFAULT_MIN_NUM_UPPERCASE_LETTERS);
 
     $(document).ready(function() {
+      // generate password by default on page load
+      $('#generated-password').text(generatePassword(
+	length=DEFAULT_LENGTH,
+	minNumDigits=DEFAULT_MIN_NUM_DIGITS,
+	minNumLowercaseLetters=DEFAULT_MIN_NUM_LOWERCASE_LETTERS,
+	minNumUppercaseLetters=DEFAULT_MIN_NUM_UPPERCASE_LETTERS
+      ));
+
+      // when user clicks button, generate password
       $('#generate-password-button').on('click', function() {
 	var length = parseInt($('input[name="length"]').val());
 	var hasDigits = $('input[name="use_digits"]').prop("checked");
