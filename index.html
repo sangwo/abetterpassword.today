@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>A Better Password Today</title>
+  <link type="text/css" rel="stylesheet" href="style.css">
+</head>
+<body>
+  <button id="generate-password-button">Generate Password</button>
+  <div id="generated-password"></div>
+
+  <script src="lib/jquery-3.2.1.min.js"></script>
+  <script src="generate_password.js"></script>
+  <script>
+    $(document).ready(function() {
+      $('#generate-password-button').on('click', function() {
+	console.log("Button clicked");
+      });
+    });
+  </script>
+</body>
+</html>
