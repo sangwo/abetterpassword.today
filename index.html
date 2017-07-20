@@ -13,7 +13,7 @@
   <script>
     $(document).ready(function() {
       $('#generate-password-button').on('click', function() {
-	console.log("Button clicked");
+	$('#generated-password').text(generatePassword(10));
       });
     });
   </script>
