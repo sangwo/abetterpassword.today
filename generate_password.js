@@ -49,7 +49,7 @@ function generatePassword(
   if(!(hasDigits || hasLowercaseLetters || hasUppercaseLetters || hasSpaces || hasSpecialChars)) {
      throw "Password should contain digits/letters/spaces/special characters";
   }
-  
+ 
   if(minNumDigits + minNumLowercaseLetters + minNumUppercaseLetters > length) {
     throw "Password minimum requirements exceed the given length";
   }
