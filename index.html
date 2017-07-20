@@ -5,15 +5,15 @@
   <link type="text/css" rel="stylesheet" href="style.css">
 </head>
 <body>
-  Length: <input type="text" name="length"></input><br>
+  Length: <input type="number" name="length"></input><br>
   <input type="checkbox" name="use_digits">Use Digits</input><br>
   <input type="checkbox" name="use_lowercase_letters">Use Lowercase Letters</input><br>
   <input type="checkbox" name="use_uppercase_letters">Use Uppercase Letters</input><br>
   <input type="checkbox" name="use_spaces">Use Spaces</input><br>
   <input type="checkbox" name="use_special_chars">Use Special Characters</input><br>
-  Minimum Number of Digits: <input type="text" name="min_num_digits" value="1"></input><br>
-  Minimum Number of Lowercase Letters: <input type="text" name="min_num_lowercase_letters"></input><br>
-  Minimum Number of Uppercase Letters: <input type="text" name="min_num_uppercase_letters"></input><br>
+  Minimum Number of Digits: <input type="number" name="min_num_digits" value="1"></input><br>
+  Minimum Number of Lowercase Letters: <input type="number" name="min_num_lowercase_letters"></input><br>
+  Minimum Number of Uppercase Letters: <input type="number" name="min_num_uppercase_letters"></input><br>
 
   <button id="generate-password-button">Generate Password</button>
   <div id="generated-password"></div>
@@ -21,7 +21,7 @@
   <script src="lib/jquery-3.2.1.min.js"></script>
   <script src="generate_password.js"></script>
   <script>
-    var DEFAULT_LENGTH = 3;
+    var DEFAULT_LENGTH = 8;
     $('input[name="length"]').val(DEFAULT_LENGTH);
     var DEFAULT_HAS_DIGITS = true;
     $('input[name="use_digits"]').prop("checked", true);
@@ -29,6 +29,8 @@
     $('input[name="use_lowercase_letters"]').prop("checked", true);
     var DEFAULT_HAS_UPPERCASE_LETTERS = true;
     $('input[name="use_uppercase_letters"]').prop("checked", true);
+    var DEFAULT_HAS_SPACES = false;
+    var DEFAULT_HAS_SPECIAL_CHARS = false;
     var DEFAULT_MIN_NUM_DIGITS = 1;
     $('input[name="min_num_digits"]').val(DEFAULT_MIN_NUM_DIGITS);
     var DEFAULT_MIN_NUM_LOWERCASE_LETTERS = 1;
@@ -40,10 +42,59 @@
       // generate password by default on page load
       $('#generated-password').text(generatePassword(
 	length=DEFAULT_LENGTH,
+	hasDigits=DEFAULT_HAS_DIGITS,
+	hasLowercaseLetters=DEFAULT_HAS_LOWERCASE_LETTERS,
+	hasUppercaseLetters=DEFAULT_HAS_UPPERCASE_LETTERS,
+	hasSpaces=DEFAULT_HAS_SPACES,
+	hasSpecialChars=DEFAULT_HAS_SPECIAL_CHARS,
 	minNumDigits=DEFAULT_MIN_NUM_DIGITS,
 	minNumLowercaseLetters=DEFAULT_MIN_NUM_LOWERCASE_LETTERS,
 	minNumUppercaseLetters=DEFAULT_MIN_NUM_UPPERCASE_LETTERS
       ));
+
+      // check if digits/lowercase/uppercase checkboxes are checked, if not checked, disable min inputs
+      $('input[name="use_digits"]').on('blur', function() {
+	if(!$(this).prop("checked")) {
+	  $('input[name="min_num_digits"]').prop("disabled", true);  
+	} else {
+	  $('input[name="min_num_digits"]').prop("disabled", false);  
+	}
+      });
+
+      $('input[name="use_lowercase_letters"]').on('blur', function() {
+	if(!$(this).prop("checked")) {
+	  $('input[name="min_num_lowercase_letters"]').prop("disabled", true);  
+	} else {
+	  $('input[name="min_num_lowercase_letters"]').prop("disabled", false);  
+	}	
+      });
+
+      $('input[name="use_uppercase_letters"]').on('blur', function() {
+	if(!$(this).prop("checked")) {
+	  $('input[name="min_num_uppercase_letters"]').prop("disabled", true);  
+	} else {
+	  $('input[name="min_num_uppercase_letters"]').prop("disabled", false);  
+	}
+      });
+
+      // on blur, if input is empty, make it into 0
+      $('input[name="min_num_digits"]').on('blur', function() {
+	if($(this).val() == '') {
+	  $(this).val(0);  
+	}
+      });
+
+      $('input[name="min_num_lowercase_letters"]').on('blur', function() {
+	if($(this).val() == '') {
+	  $(this).val(0);  
+	}
+      });
+
+      $('input[name="min_num_uppercase_letters"]').on('blur', function() {
+	if($(this).val() == '') {
+	  $(this).val(0);  
+	}
+      });
 
       // when user clicks button, generate password
       $('#generate-password-button').on('click', function() {
@@ -53,20 +104,35 @@
 	var hasUppercaseLetters = $('input[name="use_uppercase_letters"]').prop("checked");
 	var hasSpaces = $('input[name="use_spaces"]').prop("checked");
 	var hasSpecialChars = $('input[name="use_special_chars"]').prop("checked");
-	var minNumDigits = parseInt($('input[name="min_num_digits"]').val());
-	var minNumLowercaseLetters = parseInt($('input[name="min_num_lowercase_letters"]').val());
-	var minNumUppercaseLetters = parseInt($('input[name="min_num_uppercase_letters"]').val());
+	// minimum numbers
+	if($('input[name="min_num_digits"]').prop("disabled")) {
+	  var minNumDigits = 0;  
+	} else {  
+	  var minNumDigits = parseInt($(this).val());
+	}
+
+	if($('input[name="min_num_lowercase_letters"]').prop("disabled")) {
+	  var minNumLowercaseLetters = 0;  
+	} else {  
+	  var minNumLowercaseLetters = parseInt($(this).val());
+	}
+
+	if($('input[name="min_num_uppercase_letters"]').prop("disabled")) {
+	  var minNumUppercaseLetters = 0;  
+	} else {  
+	  var minNumUppercaseLetters = parseInt($(this).val());
+	}
 
 	$('#generated-password').text(generatePassword(
 	  length=length || DEFAULT_LENGTH,
-	  hasDigits=hasDigits || DEFAULT_HAS_DIGITS,
-	  hasLowercaseLetters=hasLowercaseLetters || DEFAULT_HAS_LOWERCASE_LETTERS,
-	  hasUppercaseLetters=hasUppercaseLetters || DEFAULT_HAS_UPPERCASE_LETTERS,
+	  hasDigits=hasDigits,
+	  hasLowercaseLetters=hasLowercaseLetters,
+	  hasUppercaseLetters=hasUppercaseLetters,
 	  hasSpaces=hasSpaces,
 	  hasSpecialChars=hasSpecialChars,
-	  minNumDigits=minNumDigits || DEFAULT_MIN_NUM_DIGITS,
-	  minNumLowercaseLetters=minNumLowercaseLetters || DEFAULT_MIN_NUM_LOWERCASE_LETTERS,
-	  minNumUppercaseLetters=minNumUppercaseLetters || DEFAULT_MIN_NUM_UPPERCASE_LETTERS
+	  minNumDigits=minNumDigits,
+	  minNumLowercaseLetters=minNumLowercaseLetters,
+	  minNumUppercaseLetters=minNumUppercaseLetters
 	));
       });
     });
