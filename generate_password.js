@@ -36,14 +36,14 @@ function sum_array(nums) {
 
 function generatePassword(
   length,
-  hasDigits=true,
-  hasLowercaseLetters=true,
-  hasUppercaseLetters=true,
-  hasSpaces=true,
-  hasSpecialChars=true,
-  minNumDigits=0,
-  minNumLowercaseLetters=0,
-  minNumUppercaseLetters=0
+  hasDigits,
+  hasLowercaseLetters,
+  hasUppercaseLetters,
+  hasSpaces,
+  hasSpecialChars,
+  minNumDigits,
+  minNumLowercaseLetters,
+  minNumUppercaseLetters
 ) {
   // Errors
   if(!(hasDigits || hasLowercaseLetters || hasUppercaseLetters || hasSpaces || hasSpecialChars)) {
