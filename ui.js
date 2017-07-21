@@ -30,6 +30,9 @@ $(document).ready(function() {
   }
 
   function setPasswordFromSettings() {
+    // clear prev error message
+    $('#error-message').text('');
+
     var length = parseInt(inputs.length.val());
     var hasDigits = inputs.useDigitsCheckbox.prop("checked");
     var hasLowercaseLetters = inputs.useLowercaseLettersCheckbox.prop("checked");
@@ -55,8 +58,8 @@ $(document).ready(function() {
       var minNumUppercaseLetters = parseInt(inputs.minNumUppercaseLetters.val());
     }
 
-    $('#generated-password').text(
-      generatePassword(
+    try {
+      var generatedPassword = generatePassword(
 	length || DEFAULT_LENGTH,
 	hasDigits,
 	hasLowercaseLetters,
@@ -66,8 +69,14 @@ $(document).ready(function() {
 	minNumDigits,
 	minNumLowercaseLetters,
 	minNumUppercaseLetters
-      )
-    );
+      );
+
+      $('#generated-password').text(generatedPassword);
+    }
+    catch(err) {
+      $('#error-message').text(err);        
+    }
+
   }
 
   // check if digits/lowercase/uppercase checkboxes are checked, if not checked, disable min inputs
