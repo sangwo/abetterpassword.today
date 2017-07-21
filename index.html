@@ -2,26 +2,65 @@
 <html>
 <head>
   <title>A Better Password Today</title>
+  <link type="text/css" rel="stylesheet" href="lib/roboto-mono.css">
   <link type="text/css" rel="stylesheet" href="style.css">
 </head>
 <body>
-  Length: <input type="number" name="length"></input><br>
-  <input type="checkbox" name="use_digits">Use Digits</input><br>
-  <input type="checkbox" name="use_lowercase_letters">Use Lowercase Letters</input><br>
-  <input type="checkbox" name="use_uppercase_letters">Use Uppercase Letters</input><br>
-  <input type="checkbox" name="use_spaces">Use Spaces</input><br>
-  <input type="checkbox" name="use_special_chars">Use Special Characters</input><br>
-  Minimum Number of Digits: <input type="number" name="min_num_digits" value="1"></input><br>
-  Minimum Number of Lowercase Letters: <input type="number" name="min_num_lowercase_letters"></input><br>
-  Minimum Number of Uppercase Letters: <input type="number" name="min_num_uppercase_letters"></input><br>
+  <div class="content">
+    <h1>A Better Password Today</h1>
+    <div id="generated-password"></div>
+    <div id="error-message"></div>
 
-  <button id="generate-password-button">Generate Password</button>
-  <div id="generated-password"></div>
+    <div id="inputs">
+      <ul>
+	<li id="length">
+	  <label>Length</label> <input type="number" name="length"></input>
+	</li>
 
-  <div id="error-message"></div>
+	<li>
+	  <input type="checkbox" name="use_digits" id="digit-switch"></input>
+	  <label for="digit-switch" class="switch"></label>
 
-  <script src="lib/jquery-3.2.1.min.js"></script>
-  <script src="generate_password.js"></script>
-  <script src="ui.js"></script>
+	  <label>Digits :: minimum</label>
+	  <input type="number" name="min_num_digits"></input>
+	  <label>digits</label>
+	</li>
+
+	<li>
+	  <input type="checkbox" name="use_lowercase_letters" id="lowercase-letters-switch"></input>
+	  <label for="lowercase-letters-switch" class="switch"></label>
+
+	  <label>Lowercase letters :: minimum</label>
+	  <input type="number" name="min_num_lowercase_letters"></input>
+	  <label>letters</label>
+	</li>
+
+	<li>
+	  <input type="checkbox" name="use_uppercase_letters" id="uppercase-letters-switch"></input>
+	  <label for="uppercase-letters-switch" class="switch"></label>
+
+	  <label>Uppercase letters :: minimum</label>
+	  <input type="number" name="min_num_uppercase_letters"></input>
+	  <label>letters</label>
+	</li>
+	<li>
+	  <input type="checkbox" name="use_spaces" id="spaces-switch"></input>
+	  <label for="spaces-switch" class="switch"></label>
+	  <label>Spaces</label>
+	</li>
+	<li>
+	  <input type="checkbox" name="use_special_chars" id="special-chars-switch"></input>
+	  <label for="special-chars-switch" class="switch"></label>
+	  <label>Special characters (!@#%)</label>
+	</li>
+      </ul>
+    </div>
+
+    <button id="generate-password-button">Generate Password</button>
+
+    <script src="lib/jquery-3.2.1.min.js"></script>
+    <script src="generate_password.js"></script>
+    <script src="ui.js"></script>
+  </div>
 </body>
 </html>

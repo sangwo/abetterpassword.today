@@ -81,7 +81,7 @@ $(document).ready(function() {
 
   // check if digits/lowercase/uppercase checkboxes are checked, if not checked, disable min inputs
   function addEventHandlers() {
-    inputs.useDigitsCheckbox.on('blur', function() {
+    inputs.useDigitsCheckbox.on('change', function() {
       if(!$(this).prop("checked")) {
 	inputs.minNumDigits.prop("disabled", true);  
       } else {
@@ -89,7 +89,7 @@ $(document).ready(function() {
       }
     });
 
-    inputs.useLowercaseLettersCheckbox.on('blur', function() {
+    inputs.useLowercaseLettersCheckbox.on('change', function() {
       if(!$(this).prop("checked")) {
 	inputs.minNumLowercaseLetters.prop("disabled", true);  
       } else {
@@ -97,7 +97,7 @@ $(document).ready(function() {
       }	
     });
 
-    inputs.useUppercaseLettersCheckbox.on('blur', function() {
+    inputs.useUppercaseLettersCheckbox.on('change', function() {
       if(!$(this).prop("checked")) {
 	inputs.minNumUppercaseLetters.prop("disabled", true);  
       } else {
