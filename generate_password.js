@@ -81,6 +81,8 @@ function generatePassword(
     var randomIndex = Math.floor(Math.random() * password.length);
     password = password.slice(0, randomIndex) + randomUppercaseLetter + password.slice(randomIndex, password.length);
   }
+
+  // TODO: if spaces/special chars checked, make them min length 1
     
   return password;
 }

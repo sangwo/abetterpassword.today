@@ -27,12 +27,16 @@ label {
   font-size: 40px;
   font-weight: bold;
   background-color: white;
+  max-width: 85%;
+  word-wrap: break-word;
+  box-sizing: border-box;
 }
 
 #inputs {
   width: 600px;
   margin: 15px auto;
   text-align: left;
+  max-width: 80%;
 }
 
 #generate-password-button {
@@ -43,6 +47,7 @@ label {
   border-radius: 15px;
   background-color: #FF7F6E;
   font-weight: bold;
+  margin-bottom: 30px;
 }
 
 #generate-password-button:focus {
@@ -98,51 +103,145 @@ label {
 }
 
 .content {
-  height: calc(100vh - 30px);
+  min-height: calc(100vh - 30px);
   border: 5px solid white;
   margin: 10px;
-  min-height: 600px;
 }
 
-input[type=checkbox]{
-  height: 0;
-  width: 0;
-  visibility: hidden;
+#inputs ul li label.simple {
+  display: none;
 }
 
-label.switch {
+#show-hide-inputs {
+  margin: auto;
+  font-family: 'Roboto Mono', monospace;
+  margin-bottom: 15px;
+  color: white;
+  font-size: 20px;
   cursor: pointer;
-  text-indent: -9999px;
-  width: 42px;
-  height: 21px;
-  background: grey;
-  display: inline-block;
-  border-radius: 100px;
-  position: relative;
-  margin-right: 10px;
+  display: none;
+}
+  
+/* Responsive */
+@media only screen and (min-width: 730px) {
+  input[type=checkbox]{
+    height: 0;
+    width: 0;
+    visibility: hidden;
+  }
+
+  label.switch {
+    cursor: pointer;
+    text-indent: -9999px;
+    width: 42px;
+    height: 21px;
+    background: grey;
+    display: inline-block;
+    border-radius: 100px;
+    position: relative;
+    margin-right: 10px;
+  }
+
+  label.switch:after {
+    content: '';
+    position: absolute;
+    top: 1.05px;
+    left: 1.05px;
+    width: 18.9px;
+    height: 18.9px;
+    background: #fff;
+    border-radius: 90px;
+    transition: 0.3s;
+  }
+
+  input:checked + label.switch {
+    background: #bada55;
+  }
+
+  input:checked + label.switch:after {
+    left: calc(100% - 1.05px);
+    transform: translateX(-100%);
+  }
+
+  label.switch:active:after {
+    width: 27.3px;
+  }
 }
 
-label.switch:after {
-  content: '';
-  position: absolute;
-  top: 1.05px;
-  left: 1.05px;
-  width: 18.9px;
-  height: 18.9px;
-  background: #fff;
-  border-radius: 90px;
-  transition: 0.3s;
+@media only screen and (max-width: 768px) {
+  h1 {
+    max-width: 80%;
+    margin: auto;
+    margin-top: 20px;
+    margin-bottom: 30px;
+    font-size: 35px;
+  }  
 }
 
-input:checked + label.switch {
-  background: #bada55;
+@media only screen and (max-width: 730px) {
+  #inputs ul {
+    margin-left: 8%;  
+  }
+
+  #inputs ul li#length {
+    margin-left: 34px;  
+  }  
+
+  #inputs ul li input[type="number"] {
+    width: 70px;  
+  }
+
+  label {
+    padding-left: 15px;  
+  }
+
+  label.end {
+    display: none;  
+  }
 }
 
-input:checked + label.switch:after {
-  left: calc(100% - 1.05px);
-  transform: translateX(-100%);
+@media only screen and (max-width: 630px) {
+  h1 {
+    font-size: 30px; 
+  }
+
+  #inputs ul li label.complex {
+    display: none;  
+  }
+
+  #inputs ul li label.simple {
+    display: initial;  
+  }
+
+  #inputs ul {
+    margin-left: 25%;  
+  }
 }
 
-label.switch:active:after {
-  width: 27.3px;
+@media only screen and (max-width: 550px) {
+  h1 {
+    font-size: 25px;  
+  }
+}
+
+@media only screen and (max-width: 460px) {
+  h1 {
+    font-size: 20px;  
+  }  
+
+  #github-fork {
+    display: none;  
+  }
+
+  #inputs ul {
+    margin-left: 15%;  
+  }
+
+  #inputs {
+    display: none;  
+  }
+
+  #show-hide-inputs {
+    display: block;  
+  }
 }

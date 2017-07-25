@@ -8,11 +8,13 @@
 <body>
   <div class="content">
     <h1>A Better Password Today</h1>
+    <!--TODO: implement copy to clipboard-->
     <div id="generated-password"></div>
     <div id="error-message"></div>
 
     <div id="inputs">
       <ul>
+	<!--TODO: make length into slider bar-->
 	<li id="length">
 	  <label>Length</label> <input type="number" name="length"></input>
 	</li>
@@ -21,48 +23,65 @@
 	  <input type="checkbox" name="use_digits" id="digit-switch"></input>
 	  <label for="digit-switch" class="switch"></label>
 
-	  <label>Digits :: minimum</label>
+	  <label class="complex">Digits :: minimum</label>
 	  <input type="number" name="min_num_digits"></input>
-	  <label>digits</label>
+	  <label class="end">digits</label>
+	  <label class="simple">0-9</label>
 	</li>
 
 	<li>
 	  <input type="checkbox" name="use_lowercase_letters" id="lowercase-letters-switch"></input>
 	  <label for="lowercase-letters-switch" class="switch"></label>
 
-	  <label>Lowercase letters :: minimum</label>
+	  <label class="complex">Lowercase letters :: minimum</label>
 	  <input type="number" name="min_num_lowercase_letters"></input>
-	  <label>letters</label>
+	  <label class="end">letters</label>
+	  <label class="simple">a-z</label>
 	</li>
 
 	<li>
 	  <input type="checkbox" name="use_uppercase_letters" id="uppercase-letters-switch"></input>
 	  <label for="uppercase-letters-switch" class="switch"></label>
 
-	  <label>Uppercase letters :: minimum</label>
+	  <label class="complex">Uppercase letters :: minimum</label>
 	  <input type="number" name="min_num_uppercase_letters"></input>
-	  <label>letters</label>
+	  <label class="end">letters</label>
+	  <label class="simple">A-Z</label>
 	</li>
+	
 	<li>
 	  <input type="checkbox" name="use_spaces" id="spaces-switch"></input>
 	  <label for="spaces-switch" class="switch"></label>
 	  <label>Spaces</label>
 	</li>
+
 	<li>
 	  <input type="checkbox" name="use_special_chars" id="special-chars-switch"></input>
 	  <label for="special-chars-switch" class="switch"></label>
-	  <label>Special characters (!@#%)</label>
+	  <label class="complex">Special characters (!@#%)</label>
+	  <label class="simple">!@#%</label>
 	</li>
       </ul>
     </div>
+    <div id="show-hide-inputs">Show options</div>
 
     <button id="generate-password-button">Generate Password</button>
 
     <script src="lib/jquery-3.2.1.min.js"></script>
     <script src="generate_password.js"></script>
     <script src="ui.js"></script>
+    <script>
+      $(document).ready(function() {
+	$('#show-hide-inputs').on('click', function() {	
+	  $('#inputs').slideToggle("slow");
+	  ($(this).text() === "Show options") ? $(this).text("Hide options") : $(this).text("Show options");
+	});
+      })
+    </script>
   </div>
 
-  <a href="https://github.com/sangwo/abetterpassword.today"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://camo.githubusercontent.com/52760788cde945287fbb584134c4cbc2bc36f904/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f77686974655f6666666666662e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_right_white_ffffff.png"></a>
+  <span id="github-fork">
+    <a href="https://github.com/sangwo/abetterpassword.today"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://camo.githubusercontent.com/52760788cde945287fbb584134c4cbc2bc36f904/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f77686974655f6666666666662e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_right_white_ffffff.png"></a>
+  </span>
 </body>
 </html>
