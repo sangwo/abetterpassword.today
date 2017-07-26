@@ -2,6 +2,8 @@
 <html>
 <head>
   <title>A Better Password Today</title>
+  <link type="text/css" rel="stylesheet" href="lib/simple-checkbox.css"> <!--why not work... if works, erase below-->
+  <link href="https://netdna.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
   <link type="text/css" rel="stylesheet" href="lib/roboto-mono.css">
   <link type="text/css" rel="stylesheet" href="style.css">
 </head>
@@ -21,7 +23,9 @@
 
 	<li>
 	  <input type="checkbox" name="use_digits" id="digit-switch"></input>
-	  <label for="digit-switch" class="switch"></label>
+	  <label for="digit-switch" class="switch">
+	    <div><i class="fa fa-check"></i></div>
+	  </label>
 
 	  <label class="complex">Digits :: minimum</label>
 	  <input type="number" name="min_num_digits"></input>
@@ -31,7 +35,9 @@
 
 	<li>
 	  <input type="checkbox" name="use_lowercase_letters" id="lowercase-letters-switch"></input>
-	  <label for="lowercase-letters-switch" class="switch"></label>
+	  <label for="lowercase-letters-switch" class="switch">
+	    <div><i class="fa fa-check"></i></div>
+	  </label>
 
 	  <label class="complex">Lowercase letters :: minimum</label>
 	  <input type="number" name="min_num_lowercase_letters"></input>
@@ -41,7 +47,9 @@
 
 	<li>
 	  <input type="checkbox" name="use_uppercase_letters" id="uppercase-letters-switch"></input>
-	  <label for="uppercase-letters-switch" class="switch"></label>
+	  <label for="uppercase-letters-switch" class="switch">
+	    <div><i class="fa fa-check"></i></div>
+	  </label>
 
 	  <label class="complex">Uppercase letters :: minimum</label>
 	  <input type="number" name="min_num_uppercase_letters"></input>
@@ -51,13 +59,17 @@
 	
 	<li>
 	  <input type="checkbox" name="use_spaces" id="spaces-switch"></input>
-	  <label for="spaces-switch" class="switch"></label>
+	  <label for="spaces-switch" class="switch">
+	    <div><i class="fa fa-check"></i></div>
+	  </label>
 	  <label>Spaces</label>
 	</li>
 
 	<li>
 	  <input type="checkbox" name="use_special_chars" id="special-chars-switch"></input>
-	  <label for="special-chars-switch" class="switch"></label>
+	  <label for="special-chars-switch" class="switch">
+	    <div><i class="fa fa-check"></i></div>
+	  </label>
 	  <label class="complex">Special characters (!@#%)</label>
 	  <label class="simple">!@#%</label>
 	</li>
@@ -71,11 +83,26 @@
     <script src="generate_password.js"></script>
     <script src="ui.js"></script>
     <script>
+      function copyToClipboard(element) {
+	var $temp = $("<input>");	
+	$("body").append($temp);
+	$temp.val(element.text()).select();
+	document.execCommand("copy");
+	$temp.remove();
+      }
+
       $(document).ready(function() {
+
 	$('#show-hide-inputs').on('click', function() {	
 	  $('#inputs').slideToggle("slow");
 	  ($(this).text() === "Show options") ? $(this).text("Hide options") : $(this).text("Show options");
 	});
+
+	$('#generated-password').on('click', function() {
+	  copyToClipboard($(this));
+	  $('#error-message').text("Copied to clipboard");
+	});
+
       })
     </script>
   </div>

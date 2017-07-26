@@ -30,6 +30,7 @@ label {
   max-width: 85%;
   word-wrap: break-word;
   box-sizing: border-box;
+  cursor: pointer;
 }
 
 #inputs {
@@ -98,8 +99,11 @@ label {
 }
 
 #error-message {
-  margin-top: 15px;
   color: red;
+  max-width: 80%;
+  margin: auto;
+  margin-top: 15px;
+  margin-bottom: 10px;
 }
 
 .content {
@@ -123,7 +127,7 @@ label {
 }
   
 /* Responsive */
-@media only screen and (min-width: 730px) {
+@media only screen and (min-width: 769px) {
   input[type=checkbox]{
     height: 0;
     width: 0;
@@ -176,9 +180,7 @@ label {
     margin-bottom: 30px;
     font-size: 35px;
   }  
-}
 
-@media only screen and (max-width: 730px) {
   #inputs ul {
     margin-left: 8%;  
   }
@@ -198,9 +200,29 @@ label {
   label.end {
     display: none;  
   }
+
+  /* change to simple checkbox */
+  input[type="checkbox"] { display:none; }
+
+  label.switch div{
+    width: 23px;
+    height: 23px;
+    display: inline-block;
+    border: 2px solid white;
+    text-align: center;
+    line-height: 20px;
+    margin-right: 6px;    
+    border-radius: 3px;
+    cursor: pointer;    
+    color: white;
+  }
+
+  label.switch i { font-size: 16px; opacity: 0; }
+  input:checked + label.switch i { opacity: 1; }
+  input:checked + label.switch div { background: #bada55; }
 }
 
-@media only screen and (max-width: 630px) {
+@media only screen and (max-width: 670px) {
   h1 {
     font-size: 30px; 
   }
@@ -222,16 +244,16 @@ label {
   h1 {
     font-size: 25px;  
   }
-}
-
-@media only screen and (max-width: 460px) {
-  h1 {
-    font-size: 20px;  
-  }  
 
   #github-fork {
     display: none;  
   }
+}
+
+@media only screen and (max-width: 465px) {
+  h1 {
+    font-size: 20px;  
+  }  
 
   #inputs ul {
     margin-left: 15%;  
