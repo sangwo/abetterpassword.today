@@ -45,18 +45,22 @@ function generatePassword(
   minNumLowercaseLetters,
   minNumUppercaseLetters
 ) {
+  // when hasSpaces or hasSpecialChars is true, set their minimum number to 1
+  var minNumSpaces = Number(hasSpaces);
+  var minNumSpecialChars = Number(hasSpecialChars);
+
   // Errors
   if(!(hasDigits || hasLowercaseLetters || hasUppercaseLetters || hasSpaces || hasSpecialChars)) {
      throw "Password should contain digits/letters/spaces/special characters";
   }
  
-  if(minNumDigits + minNumLowercaseLetters + minNumUppercaseLetters > length) {
+  if(minNumDigits + minNumLowercaseLetters + minNumUppercaseLetters + minNumSpaces + minNumSpecialChars > length) {
     throw "Password minimum requirements exceed the given length";
   }
-    
+
   var password = '';
   // generate password that is not in minimum requirements
-  for(var i = 0; i < length - (minNumDigits + minNumLowercaseLetters + minNumUppercaseLetters); i++) {
+  for(var i = 0; i < length - (minNumDigits + minNumLowercaseLetters + minNumUppercaseLetters + minNumSpaces + minNumSpecialChars); i++) {
     var charType = pickCharType(hasDigits, hasLowercaseLetters, hasUppercaseLetters, hasSpaces, hasSpecialChars);
     password += generateRandomChar(charType);
   }
@@ -82,7 +86,18 @@ function generatePassword(
     password = password.slice(0, randomIndex) + randomUppercaseLetter + password.slice(randomIndex, password.length);
   }
 
-  // TODO: if spaces/special chars checked, make them min length 1
+  // generate password in minimum spaces
+  for(var i = 0; i < minNumSpaces; i++) {
+    var randomIndex = Math.floor(Math.random() * password.length);
+    password = password.slice(0, randomIndex) + ' ' + password.slice(randomIndex, password.length); 
+  }
+
+  // generate password in minimum special characters
+  for(var i = 0; i < minNumSpecialChars; i++) {
+    var randomSpecialChars = generateRandomSpecialChars();
+    var randomIndex = Math.floor(Math.random() * password.length);  
+    password = password.slice(0, randomIndex) + randomSpecialChars + password.slice(randomIndex, password.length); 
+  }
     
   return password;
 }
@@ -157,4 +172,8 @@ function generateRandomLowercaseLetter() {
 
 function generateRandomUppercaseLetter() {
   return choice(LETTERS.toUpperCase());
+}
+
+function generateRandomSpecialChars() {
+  return choice(SPECIAL_LETTERS);  
 }
