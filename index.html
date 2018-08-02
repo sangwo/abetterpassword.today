@@ -80,6 +80,8 @@
 
     <button id="generate-password-button">Generate Password</button>
 
+    <footer>Copyright &copy; <span id="copyright-year"></span> Sangwon Kim. All Rights Reserved.</footer>
+
     <script src="lib/jquery-3.2.1.min.js"></script>
     <script src="generate_password.js"></script>
     <script src="ui.js"></script>
@@ -103,6 +105,9 @@
 	  copyToClipboard($(this));
 	  $('#error-message').text("Copied to clipboard");
 	});
+
+	var currentYear = (new Date()).getFullYear();
+	$('#copyright-year').append(currentYear);
 
       })
     </script>
