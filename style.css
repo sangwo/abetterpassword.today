@@ -132,7 +132,7 @@ footer {
   left: 0;
   right: 0;
   bottom: 0;
-  padding: 60px 0 30px 0;
+  padding: 60px 15px 30px 15px;
 }
   
 /* Responsive */
@@ -256,6 +256,10 @@ footer {
 
   #github-fork {
     display: none;  
+  }
+
+  footer {
+    font-size: small;  
   }
 }
 
