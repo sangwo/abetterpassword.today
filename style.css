@@ -1,14 +1,21 @@
-html {
-  height: 100vh;
-}
-
 body {
   font-family: 'Roboto Mono', monospace;
-  text-align: center;  
+  text-align: center;
   background: #FF5F6D;
   background: -webkit-radial-gradient(circle at center, #FFC371, #FF5F6D);
   background: radial-gradient(circle at center, #FFC371, #FF5F6D);
   margin: 0;
+  padding: 10px;
+  min-height: 100vh;
+  box-sizing: border-box;
+}
+
+.content {
+  position: relative;
+  min-height: calc(100vh - 20px);
+  border: 5px solid white;
+  box-sizing: border-box;
+  padding-bottom: 40px;
 }
 
 h1 {
@@ -49,6 +56,7 @@ label {
   background-color: #FF7F6E;
   font-weight: bold;
   margin-bottom: 30px;
+  max-width: 85%;
 }
 
 #generate-password-button:focus {
@@ -68,7 +76,7 @@ label {
   padding: 0;
   text-align: left;
   line-height: 30px;
-  font-size: 18px; 
+  font-size: 18px;
 }
 
 #inputs ul li {
@@ -106,12 +114,6 @@ label {
   margin-bottom: 10px;
 }
 
-.content {
-  min-height: calc(100vh - 30px);
-  border: 5px solid white;
-  margin: 10px;
-}
-
 #inputs ul li label.simple {
   display: none;
 }
@@ -132,9 +134,9 @@ footer {
   left: 0;
   right: 0;
   bottom: 0;
-  padding: 60px 15px 30px 15px;
+  padding: 10px 15px;
 }
-  
+
 /* Responsive */
 @media only screen and (min-width: 769px) {
   input[type=checkbox]{
@@ -188,26 +190,26 @@ footer {
     margin-top: 20px;
     margin-bottom: 30px;
     font-size: 35px;
-  }  
+  }
 
   #inputs ul {
-    margin-left: 8%;  
+    margin-left: 8%;
   }
 
   #inputs ul li#length {
-    margin-left: 34px;  
-  }  
+    margin-left: 34px;
+  }
 
   #inputs ul li input[type="number"] {
-    width: 70px;  
+    width: 70px;
   }
 
   label {
-    padding-left: 15px;  
+    padding-left: 15px;
   }
 
   label.end {
-    display: none;  
+    display: none;
   }
 
   /* change to simple checkbox */
@@ -220,9 +222,9 @@ footer {
     border: 2px solid white;
     text-align: center;
     line-height: 20px;
-    margin-right: 6px;    
+    margin-right: 6px;
     border-radius: 3px;
-    cursor: pointer;    
+    cursor: pointer;
     color: white;
   }
 
@@ -233,50 +235,50 @@ footer {
 
 @media only screen and (max-width: 670px) {
   h1 {
-    font-size: 30px; 
+    font-size: 30px;
   }
 
   #inputs ul li label.complex {
-    display: none;  
+    display: none;
   }
 
   #inputs ul li label.simple {
-    display: initial;  
+    display: initial;
   }
 
   #inputs ul {
-    margin-left: 25%;  
+    margin-left: 25%;
   }
 }
 
 @media only screen and (max-width: 550px) {
   h1 {
-    font-size: 25px;  
+    font-size: 25px;
   }
 
   #github-fork {
-    display: none;  
+    display: none;
   }
 
   footer {
-    font-size: small;  
+    font-size: small;
   }
 }
 
 @media only screen and (max-width: 465px) {
   h1 {
-    font-size: 20px;  
-  }  
+    font-size: 20px;
+  }
 
   #inputs ul {
-    margin-left: 15%;  
+    margin-left: 15%;
   }
 
   #inputs {
-    display: none;  
+    display: none;
   }
 
   #show-hide-inputs {
-    display: block;  
+    display: block;
   }
 }

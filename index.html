@@ -57,7 +57,7 @@
 	  <label class="end">letters</label>
 	  <label class="simple">A-Z</label>
 	</li>
-	
+
 	<li>
 	  <input type="checkbox" name="use_spaces" id="spaces-switch"></input>
 	  <label for="spaces-switch" class="switch">
@@ -81,41 +81,41 @@
     <button id="generate-password-button">Generate Password</button>
 
     <footer>Copyright &copy; <span id="copyright-year"></span> Sangwon Kim. All Rights Reserved.</footer>
-
-    <script src="lib/jquery-3.2.1.min.js"></script>
-    <script src="generate_password.js"></script>
-    <script src="ui.js"></script>
-    <script>
-      function copyToClipboard(element) {
-	var $temp = $("<input>");	
-	$("body").append($temp);
-	$temp.val(element.text()).select();
-	document.execCommand("copy");
-	$temp.remove();
-      }
-
-      $(document).ready(function() {
-
-	$('#show-hide-inputs').on('click', function() {	
-	  $('#inputs').slideToggle("slow");
-	  ($(this).text() === "Show options") ? $(this).text("Hide options") : $(this).text("Show options");
-	});
-
-	$('#generated-password').on('click', function() {
-	  copyToClipboard($(this));
-	  $('#error-message').text("Copied to clipboard");
-	});
-
-	// footer
-	var currentYear = (new Date()).getFullYear();
-	$('#copyright-year').append(currentYear);
-
-      })
-    </script>
   </div>
 
   <span id="github-fork">
     <a href="https://github.com/sangwo/abetterpassword.today"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://camo.githubusercontent.com/52760788cde945287fbb584134c4cbc2bc36f904/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f77686974655f6666666666662e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_right_white_ffffff.png"></a>
   </span>
+
+  <script src="lib/jquery-3.2.1.min.js"></script>
+  <script src="generate_password.js"></script>
+  <script src="ui.js"></script>
+  <script>
+    function copyToClipboard(element) {
+      var $temp = $("<input>");
+      $("body").append($temp);
+      $temp.val(element.text()).select();
+      document.execCommand("copy");
+      $temp.remove();
+    }
+
+    $(document).ready(function() {
+      // show/hide inputs button
+      $('#show-hide-inputs').on('click', function() {
+        $('#inputs').slideToggle("slow");
+        ($(this).text() === "Show options") ? $(this).text("Hide options") : $(this).text("Show options");
+      });
+
+      // generate password button
+      $('#generated-password').on('click', function() {
+        copyToClipboard($(this));
+        $('#error-message').text("Copied to clipboard");
+      });
+
+      // footer
+      var currentYear = (new Date()).getFullYear();
+      $('#copyright-year').append(currentYear);
+    });
+  </script>
 </body>
 </html>
